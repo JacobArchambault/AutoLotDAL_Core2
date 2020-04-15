@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AutoLotDAL_Core2.Models;
+using AutoLotDAL_Core2.Models.Base;
 namespace AutoLotDAL_Core2.Models
 {
     public partial class Customer : EntityBase

@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace AutoLotDAL_Core2.Models
+namespace AutoLotDAL_Core2.Models.Base
 {
     public class EntityBase
     {
