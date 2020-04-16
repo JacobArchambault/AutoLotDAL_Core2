@@ -78,5 +78,28 @@ namespace AutoLotDAL_Core2.Repos
             _table.UpdateRange(entities);
             return SaveChanges();
         }
+        internal int SaveChanges()
+        {
+            try
+            {
+                return _db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+            catch (RetryLimitExceededException)
+            {
+                throw;
+            }
+            catch (DbUpdateException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
