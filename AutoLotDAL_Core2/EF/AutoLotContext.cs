@@ -7,6 +7,7 @@ namespace AutoLotDAL_Core2.EF
 {
     public class AutoLotContext : DbContext
     {
+        public AutoLotContext() { }
         public AutoLotContext(DbContextOptions options) : base(options)
         {
         }
