@@ -19,5 +19,9 @@ namespace AutoLotDAL_Core2.EF
                 optionsBuilder.UseSqlServer(connectionString, options => options.EnableRetryOnFailure());
             }
         }
+        public DbSet<CreditRisk> CreditRisks { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Inventory> Cars { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
