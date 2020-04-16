@@ -64,5 +64,32 @@ namespace AutoLotDAL_Core2.DataInitialization
                 context.Database.CloseConnection();
             }
         }
+        public static void RecreateDatabase(AutoLotContext context)
+        {
+            context.Database.EnsureDeleted();
+            context.Database.Migrate();
+        }
+        public static void ClearData(AutoLotContext context)
+        {
+            ExecuteDeleteSql(context, "Orders");
+            ExecuteDeleteSql(context, "Customers");
+            ExecuteDeleteSql(context, "Inventory");
+            ExecuteDeleteSql(context, "CreditRisks");
+            ResetIdentity(context);
+        }
+        public static void ExecuteDeleteSql(AutoLotContext context, string tableName)
+        {
+            var rawSqlString = $"Delete from dbo.{tableName}";
+            context.Database.ExecuteSqlCommand(rawSqlString);
+        }
+        public static void ResetIdentity(AutoLotContext context)
+        {
+            var tables = new[] { "Inventory", "Orders", "Customers", "CreditRisks" };
+            foreach (var itm in tables)
+            {
+                var rawSqlString = $"DBCC CHECKIDENT (\"dbo.{itm}\", RESEED, -1);";
+                context.Database.ExecuteSqlCommand(rawSqlString);
+            }
+        }
     }
 }
