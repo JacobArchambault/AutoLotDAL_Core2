@@ -40,7 +40,6 @@ namespace AutoLotDAL_Core2.EF
         }
         public string GetTableName(Type type)
         {
-            return Model.FindEntityType(type).GetTableName()
-        }
+            return Model.FindEntityType(type).GetTableName();
     }
 }
