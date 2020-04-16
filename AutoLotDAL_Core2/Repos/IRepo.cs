@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 namespace AutoLotDAL_Core2.Repos
 {
-    interface IRepo<T>
+    public interface IRepo<T>
     {
         int Add(T entity);
         int Add(IList<T> entities);

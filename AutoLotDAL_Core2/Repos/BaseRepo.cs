@@ -59,7 +59,7 @@ namespace AutoLotDAL_Core2.Repos
             throw new NotImplementedException();
         }
 
-        public List<T> GetAll() => _table.ToList();
+        public virtual List<T> GetAll() => _table.ToList();
 
         public List<T> GetAll<TSortField>(Expression<Func<T, TSortField>> orderBy, bool ascending) => (ascending ? _table.OrderBy(orderBy) : _table.OrderByDescending(orderBy)).ToList();
 
