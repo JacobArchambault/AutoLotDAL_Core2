@@ -1,9 +1,10 @@
 ﻿using AutoLotDAL_Core2.EF;
 using AutoLotDAL_Core2.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using static Microsoft.EntityFrameworkCore.EF;
 
 namespace AutoLotDAL_Core2.Repos
 {
@@ -20,9 +21,6 @@ namespace AutoLotDAL_Core2.Repos
             throw new NotImplementedException();
         }
 
-        public List<Inventory> Search(string searchString)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Inventory> Search(string searchString) => Context.Cars.Where(c => Functions.Like(c.PetName, $"%{searchString}%")).ToList();
     }
 }
