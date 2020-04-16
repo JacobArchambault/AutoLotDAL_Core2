@@ -1,7 +1,5 @@
-﻿using System;
-using AutoLotDAL_Core2.Models;
+﻿using AutoLotDAL_Core2.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace AutoLotDAL_Core2.EF
 {
@@ -23,5 +21,18 @@ namespace AutoLotDAL_Core2.EF
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Inventory> Cars { get; set; }
         public DbSet<Order> Orders { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // create the multi column index
+            modelBuilder.Entity<CreditRisk>(entity =>
+            {
+                entity.HasIndex(e => new { e.FirstName, e.LastName }).IsUnique();
+            });
+            // set the cascade options on the relationship
+            modelBuilder.Entity<Order>()
+                .HasOne(e => e.Car)
+                .WithMany(e => e.Orders)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        }
     }
 }
